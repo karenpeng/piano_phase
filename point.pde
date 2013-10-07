@@ -1,17 +1,14 @@
-class Point {
-  PVector position;  
-  float radius;
+class Point extends PointZ{
   float center;
   boolean hit;
   int counter;
-  int speed;
-  Point(float _x, float _y) {
-    position = new PVector(_x, _y, 0.0);
-    radius = 5.0;
+  
+  Point(float _x, float _y, float _z) {
+    super(_x,_y,_z);
     center = width / 2;
     hit=false;
     counter=0;
-    speed = _x > center ? -1 : 1;
+    speed = _x > center ? -2 : 2;
   }
   
   void move() {
@@ -28,18 +25,13 @@ class Point {
   
   void render() {
     if(!hit){
-      pushMatrix();
-      translate(position.x, position.y, 0);
-      noStroke();
-      lights();
-      sphere(radius);
-      popMatrix();   
+      super.render();
     }    
   }
   
   void lineTo(Point anotherPoint) {
-    stroke(255);
-    strokeWeight(2);
+    stroke(220);
+    strokeWeight(1);
     if (hit) {
       return;
     }

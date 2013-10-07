@@ -1,42 +1,56 @@
-ArrayList movingPoints;
-ArrayList movingPointsN;
-ArrayList movingPointsM;
-float Y = 300.0;
+ArrayList movingPoints0;
+ArrayList movingPoints1;
+ArrayList movingPoints2;
+ArrayList movingPoints3;
+float Y = 330.0;
 
-int interval = 30;
-int intervalN = 60;
+int interval = 40;
+int intervalN = 40;
 
-float [] notes = [1,2,3,4,5]; 
+float[] notes = {-100,-60,40,80,100,-60,-100,80,40,-60,80}; 
+int size = notes.length;
 
-void genPoint() {
-  float positionY = Y + (((frameCount / interval) % 2 == 0) ? 100.0 : -100.0);  
-  movingPoints.add(new Point(0.0, positionY));
+void genPoint() {   
+  float num1 = (frameCount/interval)%size; 
+  for(int i=0;i<size;i++){    
+    if(num1==i){
+      float positionY = Y+ notes[i];  
+      movingPoints0.add(new Point(0.0, positionY,0.0));
+    }
+  }
 }
 
 void genPointN() {
-  float positionY = Y + (((frameCount / intervalN) % 2 == 0) ? 100.0 : -100.0);  
-  movingPointsN.add(new Point(800.0, positionY));
+  float num2 = (frameCount/intervalN)%size; 
+  for(int j=0;j<size;j++){    
+    if(num2==j){
+      float positionY = Y+ notes[j];  
+      movingPoints1.add(new Point(1100.0, positionY,0.0));
+    }
+  }
 }
 
 void setup() {
   background(0, 0, 0);
-  size(800, 600, P3D);
-  frameRate(60);
+  size(1100, 660, P3D);
+  frameRate(40);
   smooth();  
-  movingPoints = new ArrayList<Point>();
-  movingPointsN = new ArrayList<Point>();
+  movingPoints0 = new ArrayList<Point>();
+  movingPoints1 = new ArrayList<Point>();
+  movingPoints2 = new ArrayList<PointZ>();
+  movingPoints3 = new ArrayList<PointZ>();
 }
 
-void numberControl(ArrayList points,int gap) {
+void numberControl(ArrayList points,int gap, ArrayList newArray) {
   Point prePoint = null;
   for (int i = 0; i < points.size(); i++) {
     Point p = (Point)points.get(i);
     if (p.counter>gap) {
       points.remove(i);
-      //movingPointsM.add(new Point(p));
+      newArray.add(new PointZ(0.0,p.position.y,p.position.x));
     } else {
       p.move();
-      p.check();
+      p.check();    
       p.render();
 
       if (prePoint != null) {
@@ -47,20 +61,42 @@ void numberControl(ArrayList points,int gap) {
   }  
 }
 
+void numberControlZ(ArrayList points){
+  PointZ prePoint = null;
+  for(int i=0; i<points.size();i++){
+    PointZ p = (PointZ)points.get(i);
+    if(p.position.z>1000.0){
+      points.remove(i);
+    }else{
+      println("draw sth");
+      p.move();
+      p.render();
+      if (prePoint != null) {
+        p.lineTo(prePoint);
+      }
+      prePoint = p; 
+    }
+  }
+}
+
 void draw() {
-  camera(mouseX, mouseY, (height/2.0) / tan(PI*30.0 / 180.0), width/2.0, height/2.0, 0, 0, 1, 0);
   background(0, 0, 0);
-  stroke(122);
+ 
+  camera(mouseX, mouseY, (height/2.0) / tan(PI*30.0 / 180.0), width/2.0, height/2.0, 0, 0, 1, 0);
+  stroke(100);
   strokeWeight(1);
-  line(400, 0, 0, 400, 600, 0);
-  line(0, 300, 0, 800, 300, 0);
-  line(400, 300, 1000, 400, 300, -1000);
+  line(width/2, 0, 0, width/2, height, 0);
+  line(0, height/2, 0, width, height/2, 0);
+  line(width/2, height/2, 600, width/2, height/2, 0);
+  
   if (frameCount % interval == 0) {
     genPoint();
   }
   if (frameCount % intervalN == 0) {
     genPointN();
   }
-  numberControl(movingPoints,interval);
-  numberControl(movingPointsN,intervalN);
+  numberControl(movingPoints0,interval,movingPoints2);
+  numberControl(movingPoints1,intervalN,movingPoints3);
+  numberControlZ(movingPoints2);
+  println(movingPoints2.size());
 }
