@@ -40,7 +40,9 @@ class Point {
   void lineTo(Point anotherPoint) {
     stroke(255);
     strokeWeight(2);
-
+    if (hit) {
+      return;
+    }
     if (anotherPoint.hit) {
       //get point(center, y) in the line
       float y = (center - position.x) * (anotherPoint.position.y - position.y) / (anotherPoint.position.x - position.x) + position.y;
