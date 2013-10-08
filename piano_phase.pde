@@ -22,7 +22,7 @@ void setup(){
   melodyPlay = new ArrayList <Melody>();
   
   for(int i=0;i<melodySize;i++){
-    melodyPlay.add(new Melody(melody[i]));
+    melodyPlay.add(new Melody( horizon + melody[i]));
   }
 }
 
