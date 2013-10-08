@@ -11,7 +11,7 @@ class Melody{
     on = false;
     for(int i=0; i<notes.size();i++){
       Note n = (Note)notes.get(i);
-      if(n.position.y==location.y && !n.hit && n.position.x<width/2+2 && n.position.x>width/2-2){
+      if(n.position.y==location.y && !n.hit && n.position.x<width/2+4 && n.position.x>width/2-4){
         on = true;
         break;
       }
@@ -28,7 +28,7 @@ class Melody{
       sphere(12.0);
     }else{
       fill(255,255,255,100);
-      sphere(8.0);
+      sphere(5.0);
     }
     popMatrix();
   }

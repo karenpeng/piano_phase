@@ -39,7 +39,7 @@ class Note{
     translate(position.x, position.y, position.z);
     noStroke();
     if(hit){
-      fill(look);
+      fill(look,140);
     }else{
       fill(look,60);
     }
@@ -50,9 +50,9 @@ class Note{
   
   void lineTo(Note anotherNote) {
     if(hit){
-      stroke(look,120);
+      stroke(look,140);
     }else{
-      stroke(look,80);
+      stroke(look,60);
     }
     strokeWeight(1);
     line(position.x, position.y, position.z, anotherNote.position.x, anotherNote.position.y, anotherNote.position.z);
