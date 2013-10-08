@@ -1,22 +1,20 @@
 class Melody{
   PVector location;
   boolean on;
-  int counter;
   
   Melody(float _y){
     location = new PVector(width/2, _y, 0.0);
     on = false;
-    counter=0;
   }
   
-  void detect(Note someNote){
-    if(someNote.hit==true && someNote.position.y==location.y){
-      on = true;
-      counter++;
-    }
-    if(counter>3){
-      on = false;
-      counter=0;
+  void detect(ArrayList notes){
+    on = false;
+    for(int i=0; i<notes.size();i++){
+      Note n = (Note)notes.get(i);
+      if(n.position.y==location.y && !n.hit && n.position.x<width/2+2 && n.position.x>width/2-2){
+        on = true;
+        break;
+      }
     }
   }
   

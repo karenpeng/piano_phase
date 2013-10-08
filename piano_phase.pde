@@ -96,19 +96,13 @@ void draw(){
   update(noteL);
   update(noteR);
   
-  for(int i=0;i<melodySize;i++){
-    int sizeL=noteL.size();    
+  for(int i=0;i<melodySize;i++){   
     Melody m = (Melody)melodyPlay.get(i);
-    
-    for(int j=0;j<sizeL;j++){
-      m.detect((Note)noteL.get(j));
+    ArrayList allNotes= new ArrayList<Note>(noteL);
+    for(int j=0;j<noteR.size();j++){
+      allNotes.add((Note)noteR.get(j));
     }
-    
-    int sizeR=noteR.size();
-    for(int k=0;k<sizeR;k++){
-      m.detect((Note)noteR.get(k));
-    }
-    
+    m.detect(allNotes);
     m.display();
   }
 
