@@ -99,7 +99,7 @@ void draw(){
   
   for(int i=0;i<melodySize;i++){
     int sizeL=noteL.size();    
-    Melody melody = ((Melody)melodyPlay.get(i));
+    Melody melody = (Melody)melodyPlay.get(i);
     
     for(int j=0;j<sizeL;j++){
       melody.detect((Note)noteL.get(j));
