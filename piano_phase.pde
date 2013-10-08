@@ -9,7 +9,6 @@ int melodySize = melody.length;
 
 void setup(){
   size(1200,660,P3D);
-  //blendMode(BLEND);
   frameRate(40);
   smooth();
   
@@ -22,7 +21,7 @@ void setup(){
   melodyPlay = new ArrayList <Melody>();
   
   for(int i=0;i<melodySize;i++){
-    melodyPlay.add(new Melody( horizon + melody[i]));
+    melodyPlay.add(new Melody( horizon + i*20 - 100));
   }
 }
 
@@ -99,18 +98,18 @@ void draw(){
   
   for(int i=0;i<melodySize;i++){
     int sizeL=noteL.size();    
-    Melody melody = (Melody)melodyPlay.get(i);
+    Melody m = (Melody)melodyPlay.get(i);
     
     for(int j=0;j<sizeL;j++){
-      melody.detect((Note)noteL.get(j));
+      m.detect((Note)noteL.get(j));
     }
     
     int sizeR=noteR.size();
     for(int k=0;k<sizeR;k++){
-      melody.detect((Note)noteR.get(k));
+      m.detect((Note)noteR.get(k));
     }
     
-    melody.display();
+    m.display();
   }
 
 }
