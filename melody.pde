@@ -14,7 +14,7 @@ class Melody{
   }
   
   void display(){
-    popMatrix();
+    pushMatrix();
     translate(location.x, location.y, location.z);
     noStroke();
     lights();
@@ -25,7 +25,7 @@ class Melody{
       fill(255,255,255,100);
       sphere(10.0);
     }
-    pushMatrix();
+    popMatrix();
   }
 
 }
