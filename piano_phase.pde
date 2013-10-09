@@ -1,3 +1,10 @@
+import oscP5.*;
+import netP5.*;
+/*
+OscP5 oscP5;
+NetAddress myRemoteLocation;
+*/
+
 ArrayList noteL;
 ArrayList noteR;
 ArrayList melodyPlay;
@@ -13,7 +20,7 @@ int melodySize = melody.length;
 
 void setup(){
   size(1200,660,P3D);
-  //frameRate(40);
+  //oscP5 = new OscP5(this,8000);
   smooth();
   
   horizon = height/2;
@@ -123,10 +130,5 @@ void mouseDragged(){
     alpha=200;
     sliderX=mouseX;
     intervalL = round(map(mouseX,width/16,width*3/16,60,1)); 
-    println(intervalL);
   }
-}
-
-void mouseReleased(){
-  drag=false;
 }

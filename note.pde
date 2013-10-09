@@ -39,20 +39,21 @@ class Note{
     translate(position.x, position.y, position.z);
     noStroke();
     if(hit){
-      fill(look,140);
+      fill(look,150);
     }else{
-      fill(look,60);
+      fill(look,80);
     }
     lights();
+    sphereDetail(9);
     sphere(radius);
     popMatrix();   
   }
   
   void lineTo(Note anotherNote) {
     if(hit){
-      stroke(look,140);
+      stroke(look,150);
     }else{
-      stroke(look,60);
+      stroke(look,80);
     }
     strokeWeight(1);
     line(position.x, position.y, position.z, anotherNote.position.x, anotherNote.position.y, anotherNote.position.z);
