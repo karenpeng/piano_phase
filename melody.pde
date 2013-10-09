@@ -13,11 +13,10 @@ class Melody{
       Note n = (Note)notes.get(i);
       if(n.position.y==location.y && !n.hit && n.position.x<width/2+2 && n.position.x>width/2-2){
         on = true;
-        /*
+        
         OscMessage myMessage = new OscMessage("/test");
         myMessage.add(location.y);
-        oscP5.send(myMessage,myRemoteLocation); 
-        */
+        //oscP5.send(myMessage,myRemoteLocation); 
         break;
       }
     }
