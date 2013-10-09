@@ -4,7 +4,6 @@ import netP5.*;
 OscP5 oscP5;
 NetAddress myRemoteLocation;
 
-
 ArrayList noteL;
 ArrayList noteR;
 ArrayList melodyPlay;
@@ -21,6 +20,7 @@ int melodySize = melody.length;
 void setup(){
   size(1200,660,P3D);
   oscP5 = new OscP5(this,8000);
+  myRemoteLocation = new NetAddress("127.0.0.1",8000);
   smooth();
   
   horizon = height/2;
